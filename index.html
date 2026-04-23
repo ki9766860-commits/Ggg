@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رمضان 2027 | العد التنازلي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a2f2a 0%, #064e3b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 50px;
+            max-width: 550px;
+            width: 100%;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #065f46;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .sub {
+            color: #4b5563;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .countdown-box {
+            background: #0a2f27;
+            border-radius: 40px;
+            padding: 30px 20px;
+            margin: 20px 0;
+        }
+
+        .timer {
+            font-family: monospace;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #facc15;
+            letter-spacing: 2px;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+
+        .date-badge {
+            margin-top: 18px;
+            background: #fef3c7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            color: #b45309;
+            font-weight: 500;
+        }
+
+        /* رسالة المطور */
+        .dev-message {
+            background: #eef3f0;
+            padding: 15px;
+            border-radius: 30px;
+            margin-top: 25px;
+            font-size: 0.8rem;
+            text-align: right;
+            border-right: 4px solid #10b981;
+        }
+
+        .dev-message strong {
+            color: #065f46;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.7rem;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 15px;
+        }
+
+        code {
+            background: #e2e8e2;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-family: monospace;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>
+        <span>🌙</span>
+        رمضان 2027
+        <span>⭐</span>
+    </h1>
+    <div class="sub">العد التنازلي لقدوم الشهر المبارك</div>
+
+    <div class="countdown-box">
+        <div class="timer" id="timer">جاري التحميل...</div>
+        <div class="date-badge" id="dateBadge"></div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- رسالة المطور - مختصرة ونظيفة -->
+    <!-- ================================================== -->
+    <div class="dev-message">
+        <strong>👨‍💻 رسالة المطور:</strong><br>
+        كل ناس تبي تصوم وتختم وانا ابي مسلسل ينزل في رمضان جاي<br>
+        تاريخ رمضان: <code>8 فبراير 2027</code><br>
+        لعرض باقي الأيام والشهور والساعات والدقائق والثواني.
+    </div>
+    <!-- ================================================== -->
+
+    <div class="footer">
+        © 1448 هـ - 2027 | جميع الحقوق محفوظة
+    </div>
+</div>
+
+<script>
+    // تاريخ رمضان 8 فبراير 2027
+    const targetDate = new Date(2027, 1, 8); // سنة, شهر (1 = فبراير), يوم
+    const timerElement = document.getElementById("timer");
+    const badgeElement = document.getElementById("dateBadge");
+
+    // عرض التاريخ بشكل جميل
+    const formattedDate = targetDate.toLocaleDateString('ar-EG', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    badgeElement.innerHTML = `📅 أول رمضان: ${formattedDate}`;
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+            timerElement.innerHTML = "🌙✨ رمضان مبارك ✨🌙";
+            return;
+        }
+
+        // حساب المدة الكاملة
+        const totalSeconds = Math.floor(diff / 1000);
+        const months = Math.floor(totalSeconds / (30 * 24 * 60 * 60));
+        const days = Math.floor((totalSeconds % (30 * 24 * 60 * 60)) / (24 * 60 * 60));
+        const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+        const seconds = totalSeconds % 60;
+
+        timerElement.innerHTML = `${months} شهر · ${days} يوم · ${hours} ساعة · ${minutes} دقيقة · ${seconds} ثانية`;
+    }
+
+    // تحديث كل ثانية
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
